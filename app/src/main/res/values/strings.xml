@@ -4,4 +4,11 @@
     <string name="password">password</string>
     <string name="log_in">Log In</string>
     <string name="Signup">Don\'t have an account? <u>Sign Up</u></string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email_signup">Email</string>
+    <string name="passwordlogin">password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sing_up">Sign Up</string>
+    <string name="login">Already have an account? <u>log in</u></string>
 </resources>
