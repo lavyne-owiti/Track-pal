@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dumbell"
+    android:background="@drawable/signup"
     tools:context=".SignUpActivity">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="24dp"
         android:textColorHint="#EFEBEB"
         app:boxBackgroundColor="@android:color/transparent"
@@ -23,7 +23,7 @@
         app:boxCornerRadiusTopEnd="20dp"
         app:boxCornerRadiusTopStart="20dp"
         app:boxStrokeColor="#3F51B5"
-        app:boxStrokeWidth="3dp"
+        app:boxStrokeWidth="2dp"
         app:counterEnabled="true"
         app:counterMaxLength="20"
         app:endIconMode="clear_text"
@@ -40,7 +40,7 @@
             android:inputType="textPersonName"
             android:textColor="#000000"
             android:textColorHint="@android:color/white"
-            android:textSize="20sp"
+            android:textSize="14sp"
             app:counterMaxLength="20" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -59,7 +59,7 @@
         app:boxCornerRadiusTopEnd="20dp"
         app:boxCornerRadiusTopStart="20dp"
         app:boxStrokeColor="#3F51B5"
-        app:boxStrokeWidth="3dp"
+        app:boxStrokeWidth="2dp"
         app:counterEnabled="true"
         app:counterMaxLength="20"
         app:endIconMode="clear_text"
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/last_name"
             android:inputType="textPersonName"
-            android:textSize="20sp"
+            android:textSize="14sp"
             app:counterMaxLength="20" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +94,7 @@
         app:boxCornerRadiusTopEnd="20dp"
         app:boxCornerRadiusTopStart="20dp"
         app:boxStrokeColor="#3F51B5"
-        app:boxStrokeWidth="3dp"
+        app:boxStrokeWidth="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilLastName"
@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/email_signup"
             android:inputType="textEmailAddress"
-            android:textSize="20sp" />
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -124,7 +124,7 @@
         app:boxCornerRadiusTopEnd="20dp"
         app:boxCornerRadiusTopStart="20dp"
         app:boxStrokeColor="#3F51B5"
-        app:boxStrokeWidth="3dp"
+        app:boxStrokeWidth="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilEmail"
@@ -137,7 +137,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:textSize="20sp" />
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -155,7 +155,7 @@
         app:boxCornerRadiusTopEnd="20dp"
         app:boxCornerRadiusTopStart="20dp"
         app:boxStrokeColor="#3F51B5"
-        app:boxStrokeWidth="3dp"
+        app:boxStrokeWidth="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilPassword"
@@ -168,7 +168,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/confirm_password"
             android:inputType="textPassword"
-            android:textSize="20sp" />
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -191,7 +191,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/login"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

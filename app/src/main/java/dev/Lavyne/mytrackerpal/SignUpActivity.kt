@@ -1,72 +1,81 @@
 package dev.Lavyne.mytrackerpal
 
 import android.content.Intent
+import android.media.MediaCodec
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
+import android.util.Patterns
 import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import dev.Lavyne.mytrackerpal.databinding.ActivitySignUpBinding
+import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
-    lateinit var tilFirstName:TextInputLayout
-    lateinit var tilLastName:TextInputLayout
-    lateinit var tilEmail:TextInputLayout
-    lateinit var tilPassword:TextInputLayout
-    lateinit var tilConfirmPassword:TextInputLayout
-    lateinit var etFirstName:TextInputEditText
-    lateinit var etLastName:TextInputEditText
-    lateinit var etEmail:TextInputEditText
-    lateinit var etPassword:TextInputEditText
-    lateinit var etConfirmPassword:TextInputEditText
-    lateinit var tvLogIn:TextView
-    lateinit var btnSignUp:Button
+    lateinit var binding: ActivitySignUpBinding
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
-            tilConfirmPassword=findViewById(R.id.tilConfirmPassword)
-            tilPassword=findViewById(R.id.tilPassword)
-            tilFirstName=findViewById(R.id.tilFirstName)
-            tilLastName=findViewById(R.id.tilLastName)
-            tilEmail=findViewById(R.id.tilEmail)
-            etConfirmPassword=findViewById(R.id.etConfirmPassword)
-            etEmail=findViewById(R.id.etEmail)
-            etFirstName=findViewById(R.id.etFirstName)
-            etLastName=findViewById(R.id.etLastName)
-            etPassword=findViewById(R.id.etPassword)
-            tvLogIn=findViewById(R.id.tvLogIn)
-            btnSignUp=findViewById(R.id.btnSignUp)
-
-            tvLogIn.setOnClickListener {
-                val intent=Intent(this,LoginActivity::class.java)
-                startActivity(intent)
-            }
-
-            btnSignUp.setOnClickListener {
-                validateSignUp()
-            }
+            binding=ActivitySignUpBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+         listener()
 
     }
+    fun listener(){
+        binding.tvLogIn.setOnClickListener {
+            val intent=Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+       binding.btnSignUp.setOnClickListener {
+            validateSignUp()
+            val intent=Intent(this,HomeActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
     fun validateSignUp(){
-        var firstName=etFirstName.text.toString()
-        var lastName=etLastName.text.toString()
-        var email=etEmail.text.toString()
-        var password=etPassword.text.toString()
-        var confirmPassword=etConfirmPassword.text.toString()
+        var firstName=binding.etFirstName.text.toString()
+        var lastName=binding.etLastName.text.toString()
+        var email=binding.etEmail.text.toString()
+        var password=binding.etPassword.text.toString()
+        var confirmPassword=binding.etConfirmPassword.text.toString()
+
+
+//        etEmail.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//                tilEmail.error=null
+//            }
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//            }
+//
+//            override fun afterTextChanged(s: Editable) {
+//
+//            }
+//        })
+
         if  (email.isBlank()){
-            tilEmail.error ="Email is required"
+            binding.tilEmail.error ="Email is required"
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            binding.tilEmail.error ="email is invalid"
         }
         if  (password.isBlank()){
-            tilPassword.error ="password is required"
+            binding.tilPassword.error ="password is required"
         }
         if  (confirmPassword.isBlank()){
-            tilConfirmPassword.error ="confirm password is required"
+            binding.tilConfirmPassword.error ="confirm password is required"
         }
         if  (firstName.isBlank()){
-            tilFirstName.error ="firstName is required"
+            binding.tilFirstName.error ="firstName is required"
         }
         if  (lastName.isBlank()){
-            tilLastName.error ="lastName is required"
+            binding.tilLastName.error ="lastName is required"
+        }
+        if (password != confirmPassword){
+            binding.tilConfirmPassword.error="password invalid"
         }
 
     }
