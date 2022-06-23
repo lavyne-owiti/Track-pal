@@ -7,21 +7,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dev.Lavyne.mytrackerpal.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
-    lateinit var bnvHome:BottomNavigationView
-    lateinit var fcvHome:FragmentContainerView
+    lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
-        castView()
+        binding=ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setupBottomNav()
     }
-    fun castView(){
-        bnvHome=findViewById(R.id.bottom_Nav)
-        fcvHome=findViewById(R.id.fcvHome)
 
-    }
     fun setupBottomNav(){
-        bnvHome.setOnItemSelectedListener { item->
+        binding.bottomNav.setOnItemSelectedListener { item->
             when(item.itemId){
                 R.id.home ->{
                     supportFragmentManager.beginTransaction().replace(R.id.fcvHome,HomeFragment()).commit()
