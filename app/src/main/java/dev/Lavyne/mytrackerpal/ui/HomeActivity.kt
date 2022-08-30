@@ -1,9 +1,8 @@
-package dev.Lavyne.mytrackerpal
+package dev.Lavyne.mytrackerpal.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.FragmentContainerView
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import dev.Lavyne.mytrackerpal.R
 import dev.Lavyne.mytrackerpal.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
@@ -19,19 +18,28 @@ class HomeActivity : AppCompatActivity() {
         binding.bottomNav.setOnItemSelectedListener { item->
             when(item.itemId){
                 R.id.home ->{
-                    supportFragmentManager.beginTransaction().replace(R.id.fcvHome,HomeFragment()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.fcvHome, HomeFragment()).commit()
                     true
                 }
                 R.id.plan ->{
-                        supportFragmentManager.beginTransaction().replace(R.id.fcvHome,PlanFragment()).commit()
+                        supportFragmentManager.beginTransaction().replace(
+                            R.id.fcvHome,
+                            PlanFragment()
+                        ).commit()
                         true
                 }
                 R.id.track ->{
-                        supportFragmentManager.beginTransaction().replace(R.id.fcvHome,TrackFragment()).commit()
+                        supportFragmentManager.beginTransaction().replace(
+                            R.id.fcvHome,
+                            TrackFragment()
+                        ).commit()
                         true
                 }
                 R.id.profile ->{
-                    supportFragmentManager.beginTransaction().replace(R.id.fcvHome,ProfileFragment()).commit()
+                    supportFragmentManager.beginTransaction().replace(
+                        R.id.fcvHome,
+                        ProfileFragment()
+                    ).commit()
                     true
                 }
                 else->false

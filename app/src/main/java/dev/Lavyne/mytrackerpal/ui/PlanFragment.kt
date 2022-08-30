@@ -1,10 +1,11 @@
-package dev.Lavyne.mytrackerpal
+package dev.Lavyne.mytrackerpal.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dev.Lavyne.mytrackerpal.R
 
 
 class PlanFragment : Fragment() {

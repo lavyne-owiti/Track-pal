@@ -1,4 +1,4 @@
-package dev.Lavyne.mytrackerpal
+package dev.Lavyne.mytrackerpal.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +10,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.SplashActivity)
 
-        val intent =Intent(this,LoginActivity::class.java)
+        val intent =Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
 

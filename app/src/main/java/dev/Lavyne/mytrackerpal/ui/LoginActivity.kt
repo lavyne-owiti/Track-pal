@@ -1,12 +1,8 @@
-package dev.Lavyne.mytrackerpal
+package dev.Lavyne.mytrackerpal.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import dev.Lavyne.mytrackerpal.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -21,11 +17,11 @@ class LoginActivity : AppCompatActivity() {
     }
     fun handleListener(){
         binding.tvSignUp.setOnClickListener {
-            val intent=Intent(this,SignUpActivity::class.java)
+            val intent=Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
         binding.btnLogIn.setOnClickListener {
-            val intent=Intent(this,HomeActivity::class.java)
+            val intent=Intent(this, HomeActivity::class.java)
             startActivity(intent)
             validateLogin()
         }
@@ -33,11 +29,17 @@ class LoginActivity : AppCompatActivity() {
     fun validateLogin(){
         var email =binding.etEmail.text.toString()
         var password =binding.etEmail.text.toString()
+        var error =false
         if  (email.isBlank()){
+            error=true
             binding.tilEmail.error ="Email is required"
         }
         if  (password.isBlank()){
+            error=true
             binding.tilPassword.error ="password is required"
+        }
+        if (!error){
+
         }
     }
 
