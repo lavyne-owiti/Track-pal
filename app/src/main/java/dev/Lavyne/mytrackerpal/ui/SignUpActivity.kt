@@ -3,26 +3,25 @@ package dev.Lavyne.mytrackerpal.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Patterns
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
-import dev.Lavyne.mytrackerpal.ApiClient
-import dev.Lavyne.mytrackerpal.ApiInterface
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
+import dev.Lavyne.mytrackerpal.API.ApiClient
+import dev.Lavyne.mytrackerpal.API.ApiInterface
+import dev.Lavyne.mytrackerpal.ViewModel.UserViewModel
 import dev.Lavyne.mytrackerpal.databinding.ActivitySignUpBinding
 import dev.Lavyne.mytrackerpal.models.RegisterRequest
 import dev.Lavyne.mytrackerpal.models.RegisterResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
     lateinit var binding: ActivitySignUpBinding
+    val userViewModel: UserViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
@@ -96,34 +95,49 @@ class SignUpActivity : AppCompatActivity() {
         if (!error) {
             binding.pvRegister.visibility=View.VISIBLE
             var registerRequest = RegisterRequest(firstName, lastName, phoneNumber, email, password)
-            makeRegistrationRequest(registerRequest)
+            userViewModel.register(registerRequest)
         }
     }
 
-    fun makeRegistrationRequest(requestRequest: RegisterRequest) {
-        var apiCLient = ApiClient.buldApiClient(ApiInterface::class.java)
-        var request = apiCLient.registerUser(requestRequest)
-
-        request.enqueue(object : Callback<RegisterResponse> {
-            override fun onResponse(
-
-                call: Call<RegisterResponse>,
-                response: Response<RegisterResponse>
-            ) {
-                binding.pvRegister.visibility=View.GONE
-                if (response.isSuccessful) {
-                    var message = response.body()?.message
-                    Toast.makeText(baseContext, message, Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(baseContext, LoginActivity::class.java))
-                } else {
-                    var error = response.errorBody()?.string()
-                    Toast.makeText(baseContext, error, Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-                Toast.makeText(baseContext, t.message, Toast.LENGTH_SHORT).show()
-            }
+    override fun onResume() {
+        super.onResume()
+        userViewModel.registerLivedata.observe(this, Observer{ registerResponse ->
+            Toast.makeText(baseContext, registerResponse?.message, Toast.LENGTH_SHORT).show()
+            startActivity(Intent(baseContext, HomeActivity::class.java))
         })
+        userViewModel.registererror.observe(this, Observer{ errorMsg ->
+            Toast.makeText(baseContext, errorMsg, Toast.LENGTH_SHORT).show()
+        })
+
     }
+
 }
+
+
+
+//fun makeRegistrationRequest(requestRequest: RegisterRequest) {
+//    var apiCLient = ApiClient.buldApiClient(ApiInterface::class.java)
+//    var request = apiCLient.registerUser(requestRequest)
+//
+//    request.enqueue(object : Callback<RegisterResponse> {
+//        override fun onResponse(
+//
+//            call: Call<RegisterResponse>,
+//            response: Response<RegisterResponse>
+//        ) {
+//            binding.pvRegister.visibility=View.GONE
+//            if (response.isSuccessful) {
+//                var message = response.body()?.message
+//                Toast.makeText(baseContext, message, Toast.LENGTH_SHORT).show()
+//                startActivity(Intent(baseContext, HomeActivity::class.java))
+//            } else {
+//                var error = response.errorBody()?.string()
+//                Toast.makeText(baseContext, error, Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//
+//        override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+//            Toast.makeText(baseContext, t.message, Toast.LENGTH_SHORT).show()
+//        }
+//    })
+//}

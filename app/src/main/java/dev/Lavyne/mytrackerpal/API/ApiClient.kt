@@ -1,4 +1,4 @@
-package dev.Lavyne.mytrackerpal
+package dev.Lavyne.mytrackerpal.API
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,4 +13,5 @@ object ApiClient {
     fun <T> buldApiClient(apiInterface:Class<T>):T{
         return retrofit.create(apiInterface)
     }
+
 }
