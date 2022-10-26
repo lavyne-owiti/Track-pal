@@ -2,10 +2,7 @@ package dev.Lavyne.mytrackerpal.Repository
 
 import dev.Lavyne.mytrackerpal.API.ApiClient
 import dev.Lavyne.mytrackerpal.API.ApiInterface
-import dev.Lavyne.mytrackerpal.models.LoginRequest
-import dev.Lavyne.mytrackerpal.models.LoginResponse
-import dev.Lavyne.mytrackerpal.models.RegisterRequest
-import dev.Lavyne.mytrackerpal.models.RegisterResponse
+import dev.Lavyne.mytrackerpal.models.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
@@ -22,6 +19,10 @@ class UserRepository {
         val response =apiClient.registerUser(registerRequest)
         return@withContext response
 
+    }
+    suspend fun profileUser(profileRequest: ProfileRequest)= withContext(Dispatchers.IO){
+        val response=apiClient.profile(profileRequest)
+        return@withContext response
     }
 
 

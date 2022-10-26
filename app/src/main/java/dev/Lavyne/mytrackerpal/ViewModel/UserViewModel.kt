@@ -4,10 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.Lavyne.mytrackerpal.Repository.UserRepository
-import dev.Lavyne.mytrackerpal.models.LoginRequest
-import dev.Lavyne.mytrackerpal.models.LoginResponse
-import dev.Lavyne.mytrackerpal.models.RegisterRequest
-import dev.Lavyne.mytrackerpal.models.RegisterResponse
+import dev.Lavyne.mytrackerpal.models.*
 import kotlinx.coroutines.launch
 
 class UserViewModel :ViewModel() {
@@ -16,6 +13,8 @@ class UserViewModel :ViewModel() {
     val registerLivedata =MutableLiveData<RegisterResponse>()
     val loginerror=MutableLiveData<String>()
     val registererror=MutableLiveData<String>()
+    var profileResponseLiveData=MutableLiveData<ProfileResponse>()
+    val profileErrorLiveData=MutableLiveData<String?>()
 
     fun login(loginRequest: LoginRequest){
         viewModelScope.launch {
@@ -38,6 +37,19 @@ class UserViewModel :ViewModel() {
                 registererror.postValue(response.errorBody()?.string())
             }
         }
+    }
+    fun profileUser(profileRequest: ProfileRequest){
+        viewModelScope.launch {
+            val response=userRepository.profileUser(profileRequest)
+            if (response.isSuccessful){
+                profileResponseLiveData.postValue(response.body())
+
+            }else{
+                val error=response.errorBody()?.string()
+                profileErrorLiveData.postValue(error)
+            }
+        }
+
     }
 
 

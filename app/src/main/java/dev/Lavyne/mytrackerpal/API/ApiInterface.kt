@@ -13,6 +13,10 @@ interface ApiInterface {
     suspend fun registerUser(@Body registerRequest: RegisterRequest):Response<RegisterResponse>
     @POST("/login")
     suspend fun loginUser(@Body loginRequest: LoginRequest):Response<LoginResponse>
+    @POST ("/profile")
+    suspend fun profile(@Body profileRequest: ProfileRequest):Response<ProfileResponse>
     @GET("/exersiceCategory")
     suspend fun exerciseCategory(@Header("Authorization")token:String):Response<List<ExerciseCategory>>
+    @GET("/exersices")
+    suspend fun fetchExercise(@Header("Authorization")token:String):Response<List<Exercise>>
 }
